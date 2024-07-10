@@ -8,8 +8,8 @@
                 <a th:href="@{|detail/${product.id}|}" data-before="VIEW MORE">
                     <img class="block w-full" src="https://i.imgur.com/PVsCFy1.png" alt="">
                 </a>
-                <a href="#" th:text="${product.name}" class="text-center mt-2"></a>
-                <a href="#" th:text="${product.price}+원" class="text-center mt-2"></a>
+                <a th:href="@{|detail/${product.id}|}" th:text="${product.name}" class="text-center mt-2"></a>
+                <a th:href="@{|detail/${product.id}|}" th:text="${product.price}+원" class="text-center mt-2"></a>
             </li>
         </ul>
     </div>
