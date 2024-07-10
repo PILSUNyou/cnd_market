@@ -13,9 +13,9 @@ import lombok.Setter;
 @Setter
 public class Question extends BaseEntity {
 
-    private String title;
+    private String subject;
 
-    private String body;
+    private String content;
 
     @ManyToOne
     private Member member;
