@@ -63,9 +63,9 @@
                 질문 리스트
             </div>
             <ul class="list-group list-group-flush gap-2">
-                <li class="list-group-item">
-                    <span class="badge bd-secondary">질문 ID</span>
-                    <span>질문 질문내용</span>
+                <li th:each="question : ${product.questionList}" class="list-group-item">
+                    <span th:text="${question.id}" class="badge bd-secondary"></span>
+                    <span th:text="${question.content}"></span>
 
                     <a href="#" class="btn btn-sm btn-info">수정</a>
                     <a href="#" class="btn btn-sm btn-warning" onclick="if ( confirm('정말 삭제하시겠습니까 ?') == false ) return false;">삭제</a>
