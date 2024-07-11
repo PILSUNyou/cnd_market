@@ -24,7 +24,7 @@ public class QuestionController {
     private final ProductService productService;
     private final MemberService memberService;
 
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()") // 로그인이 확인 된 경우 사용가능 ( isAuthenticated() )
     @PostMapping("/create/{id}")
     public String create(@PathVariable("id") Long id,
                          Principal principal,
@@ -46,6 +46,7 @@ public class QuestionController {
         if( !question.getMember().getUsername().equals(principal.getName()) ) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한 없음");
         }
+        // if문에 있는 부분은 submit 한 사용자랑 다를 경우 에러를 발생하게 한다.
 
         model.addAttribute("question", question);
         return "question/modify";

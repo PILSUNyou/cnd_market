@@ -18,10 +18,15 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/list")
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Product> paging = productService.getList(page);
-
+    public String list(Model model,
+                       @RequestParam(value = "page", defaultValue = "0") int page,
+                       @RequestParam(value = "kw", defaultValue = "" )String kw) {
+        Page<Product> paging = productService.getList(page, kw);
+//       List를 Page로 변경하여 Pagination 적용하기.
+//       kw를 사용하여 검색기능 활성화 하기 sevice, repository 참조
         model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
+
         return "product/list";
     }
 

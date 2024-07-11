@@ -72,7 +72,7 @@
                             class="btn btn-sm btn-info"
                             sec:authorize="isAuthenticated()"
                             th:if="${question.member != null and #authentication.getPrincipal().getUsername() == question.member.username}"
-                    >
+                    >       <!-- 댓글을 작성 사용자인지 확인하여 일치할 경우 해당 a태그를 보이게 설정한다. -->
                         수정
                     </a>
                     <a
