@@ -54,9 +54,15 @@
                     </div>
                 </form>
                 <script>
-                    let $lastForm = $('form').last();
-                    $(window).on('load', function() {
-                        $(window).scrollTop($lastForm.offset().top);
+                    $(document).ready(function() {
+                        $(window).on('beforeunload', function() {
+                            sessionStorage.setItem('scrollPosition', $(window).scrollTop());
+                        });
+
+                        if (sessionStorage.getItem('scrollPosition')) {
+                            $(window).scrollTop(sessionStorage.getItem('scrollPosition'));
+                            sessionStorage.removeItem('scrollPosition');
+                        }
                     });
                 </script>
             </div>

@@ -67,8 +67,23 @@
                     <span th:text="${question.id}" class="badge bg-secondary mr-2"></span>
                     <span th:text="${question.content}" class="mr-2"></span>
 
-                    <a th:href="@{|/question/modify/${question.id}|}" class="btn btn-sm btn-info">수정</a>
-                    <a href="#" class="btn btn-sm btn-warning" onclick="if ( confirm('정말 삭제하시겠습니까 ?') == false ) return false;">삭제</a>
+                    <a
+                            th:href="@{|/question/modify/${question.id}|}"
+                            class="btn btn-sm btn-info"
+                            sec:authorize="isAuthenticated()"
+                            th:if="${question.member != null and #authentication.getPrincipal().getUsername() == question.member.username}"
+                    >
+                        수정
+                    </a>
+                    <a
+                            th:href="@{|/question/delete/${question.id}|}"
+                            class="btn btn-sm btn-warning"
+                       onclick="if ( confirm('정말 삭제하시겠습니까 ?') == false ) return false;"
+                            sec:authorize="isAuthenticated()"
+                            th:if="${question.member != null and #authentication.getPrincipal().getUsername() == question.member.username}"
+                    >
+                        삭제
+                    </a>
                 </li>
             </ul>
         </div>
