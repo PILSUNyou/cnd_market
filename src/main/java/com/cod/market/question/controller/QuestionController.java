@@ -4,13 +4,12 @@ import com.cod.market.member.entity.Member;
 import com.cod.market.member.service.MemberService;
 import com.cod.market.product.entity.Product;
 import com.cod.market.product.service.ProductService;
+import com.cod.market.question.entity.Question;
 import com.cod.market.question.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -32,6 +31,26 @@ public class QuestionController {
 
         questionService.create(product, member, content);
 
-        return String.format("redirect:/product/detail/%s",id);
+        return String.format("redirect:/product/detail/%s", id);
+    }
+
+    @GetMapping("/modify/{id}")
+    public String modify(@PathVariable("id") Long id, Model model) {
+        Question question = questionService.getQuestion(id);
+
+        model.addAttribute("question", question);
+        return "question/modify";
+    }
+
+    @PostMapping("/modify/{id}")
+    public String modify(@PathVariable("id") Long id,
+                         Principal principal,
+                         @RequestParam("content") String content) {
+        Question question = questionService.getQuestion(id);
+        questionService.modify(question, content);
+
+        long productId = question.getProduct().getId(); // product id 불러오기
+
+        return String.format("redirect:/product/detail/%s", productId);
     }
 }
