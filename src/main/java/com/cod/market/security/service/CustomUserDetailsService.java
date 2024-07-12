@@ -1,4 +1,4 @@
-package com.cod.market.security;
+package com.cod.market.security.service;
 
 import com.cod.market.member.entity.Member;
 import com.cod.market.member.repository.MemberRepository;
