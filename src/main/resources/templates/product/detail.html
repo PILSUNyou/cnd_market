@@ -37,6 +37,19 @@
                 </li>
             </ul>
         </div>
+
+        <div class="card mt-[30px]">
+            <div class="card-header">
+                장바구니 담기
+            </div>
+
+            <div class="card-body">
+                <form th:action="@{|/cart/add/${product.id}|}" method="POST">
+                    <input type="submit" value="장바구니 담기" class="btn btn-outline-dark">
+                </form>
+            </div>
+        </div>
+
         <div class="card mt-[30px]">
             <div class="card-header">
                 질문등록
@@ -58,15 +71,15 @@
             </div>
         </div>
 
-        <div class="card mr-[30px]">
+        <div class="card mt-[30px]">
             <div class="card-header">
                 질문 리스트
             </div>
-            <ul class="list-group list-group-flush gap-2">
+
+            <ul th:if="${#lists.size(product.questionList) > 0}" class="list-group list-group-flush gap-2 card-body">
                 <li th:each="question : ${product.questionList}" class="list-group-item">
                     <span th:text="${question.id}" class="badge bg-secondary mr-2"></span>
                     <span th:text="${question.content}" class="mr-2"></span>
-
                     <a
                             th:href="@{|/question/modify/${question.id}|}"
                             class="btn btn-sm btn-info"
@@ -85,6 +98,11 @@
                         삭제
                     </a>
                 </li>
+            </ul>
+            <ul th:unless="${#lists.size(product.questionList) > 0}" class="card-body">
+                <div>
+                    등록된 질문이 없습니다 :(
+                </div>
             </ul>
         </div>
     </div>

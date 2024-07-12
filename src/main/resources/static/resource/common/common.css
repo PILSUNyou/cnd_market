@@ -21,6 +21,7 @@ html > body {
     visibility: visible !important;
 }
 
+/* 페이지네이션 커스텀 */
 .page-item.active .page-link {
     background-color: transparent;
     color: #222;
@@ -28,8 +29,14 @@ html > body {
     font-weight: bold;
     opacity: 1;
 }
-
 .page-link {
     color: #1E3A8A;
     border: none;
     opacity: .7;
+}
+
+.page-link:hover {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+}
