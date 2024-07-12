@@ -9,7 +9,7 @@ spring:
           kakao:
             clientId:
             # 내가 받을 정보
-            scope: profile_nickname, account_email
+            scope: profile_nickname
             client-name: Kakao
             authorization-grant-type: authorization_code
             # 카카오 개발자에 등록된 redirect-uri

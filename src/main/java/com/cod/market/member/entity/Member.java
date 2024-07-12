@@ -8,12 +8,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@SuperBuilder
 public class Member extends BaseEntity {
 
     private String username;

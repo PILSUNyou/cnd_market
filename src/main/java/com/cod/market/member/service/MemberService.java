@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -17,12 +16,12 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     public Member join(String username, String password, String email, String nickname) {
-        Member member = new Member();
-        member.setUsername(username);
-        member.setPassword(passwordEncoder.encode(password));
-        member.setEmail(email);
-        member.setNickname(nickname);
-        member.setCreateDate(LocalDateTime.now());
+        Member member = Member.builder()
+                .username(username)
+                .password(password)
+                .email(email)
+                .nickname(nickname)
+                .build();
 
         memberRepository.save(member);
 
@@ -31,7 +30,7 @@ public class MemberService {
 
     public Member findByUsername(String username) {
         Optional<Member> member = memberRepository.findByUsername(username);
-        if ( member.isPresent() ) {
+        if (member.isPresent()) {
             return member.get();
         } else {
             throw new RuntimeException("member not found");
