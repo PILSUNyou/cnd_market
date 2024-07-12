@@ -20,3 +20,16 @@ html > body {
 .collapse {
     visibility: visible !important;
 }
+
+.page-item.active .page-link {
+    background-color: transparent;
+    color: #222;
+    text-decoration: underline;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.page-link {
+    color: #1E3A8A;
+    border: none;
+    opacity: .7;
