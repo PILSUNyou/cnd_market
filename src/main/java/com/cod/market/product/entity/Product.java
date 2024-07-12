@@ -1,6 +1,7 @@
 package com.cod.market.product.entity;
 
 import com.cod.market.base.BaseEntity;
+import com.cod.market.cart.entity.Cart;
 import com.cod.market.market.entity.Market;
 import com.cod.market.question.entity.Question;
 import jakarta.persistence.CascadeType;
@@ -34,4 +35,7 @@ public class Product extends BaseEntity {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Question> questionList;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    private List<Cart> cartList;
 }
