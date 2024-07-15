@@ -32,6 +32,8 @@ public class Product extends BaseEntity {
 
     private int hitCount;
 
+    private String thumbnailImg;
+
     @ManyToOne
     private Market market;
 
