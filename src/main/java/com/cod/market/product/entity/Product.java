@@ -8,9 +8,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -20,6 +18,8 @@ import java.util.List;
 @Setter
 @ToString
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product extends BaseEntity {
 
     private String name;
