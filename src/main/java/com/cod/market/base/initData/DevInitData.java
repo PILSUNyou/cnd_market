@@ -15,7 +15,7 @@ public class DevInitData implements BeforeInitData{
         return args -> {
             beforeInit();
 
-            String password = "{noop}1234"; // noop을 사용하면 난수가 적용된다
+            String password = "1234";
             memberService.join("user1", password, "user1@test.com", "user1");
             memberService.join("user2", password, "user2@test.com", "user2");
             memberService.join("user3", password, "user3@test.com", "user3");
