@@ -5,7 +5,9 @@ import com.cod.market.member.entity.Member;
 import com.cod.market.product.entity.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -13,7 +15,9 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-public class Cart extends BaseEntity {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CartItem extends BaseEntity {
 
     @ManyToOne
     private Member member;
