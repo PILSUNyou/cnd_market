@@ -1,4 +1,4 @@
-package com.cod.market.base;
+package com.cod.market.base.entity;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
 package com.cod.market.product.entity;
 
-import com.cod.market.base.BaseEntity;
+import com.cod.market.base.entity.BaseEntity;
 import com.cod.market.cart.entity.Cart;
 import com.cod.market.member.entity.Member;
 import com.cod.market.question.entity.Question;

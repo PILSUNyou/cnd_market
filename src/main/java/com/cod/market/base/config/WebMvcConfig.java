@@ -1,4 +1,4 @@
-package com.cod.market.base;
+package com.cod.market.base.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

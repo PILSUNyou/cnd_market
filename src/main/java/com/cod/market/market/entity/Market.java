@@ -1,6 +1,6 @@
 package com.cod.market.market.entity;
 
-import com.cod.market.base.BaseEntity;
+import com.cod.market.base.entity.BaseEntity;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
