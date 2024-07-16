@@ -36,7 +36,17 @@ public class ProductService {
         return productRepository.findAllByKeyword(kw, pageable);
     }
 
-    public void create(String name, String description, int price, MultipartFile thumbnail) {
+    public void create(String title, String description, int price) {
+
+        Product p = Product.builder()
+                .title(title)
+                .description(description)
+                .price(price)
+                .build();
+        productRepository.save(p);
+    }
+
+    public void create(String title, String description, int price, MultipartFile thumbnail) {
         // 이미지 삽입 시작
         String thumbnailRelPath = "product/" + UUID.randomUUID().toString() + ".jpg";
         File thumbnailFile = new File(genFileDirPath + "/" + thumbnailRelPath);
@@ -51,7 +61,7 @@ public class ProductService {
         // 이미지 삽입 종료
 
         Product p = Product.builder()
-                .name(name)
+                .title(title)
                 .description(description)
                 .price(price)
                 .thumbnailImg(thumbnailRelPath)

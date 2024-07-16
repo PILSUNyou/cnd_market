@@ -8,9 +8,9 @@
                 <a th:href="@{|/product/detail/${product.id}|}"
                    class="border border-black h-[250px] transition duration-300 rounded-lg hover:rounded-lg hover:-translate-y-1.5 hover:transition hover:duration-300 hover:shadow-md"
                 >
-                    <img class="object-cover object-center block w-full h-full rounded-lg" th:src="@{|/gen/${product.thumbnailImg}|}" alt="thumbnailImg">
+                    <img class="object-cover object-center block w-full h-full rounded-lg" th:src="@{|/gen/${product.thumbnailImg}|}" alt="이미지가 존재하지 않습니다.">
                 </a>
-                <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.name}" class="text-center md:!text-left mt-2"></a>
+                <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.title}" class="text-center md:!text-left mt-2"></a>
                 <a th:href="@{|/product/detail/${product.id}|}" th:text="${product.price}+원" class="text-center md:!text-left"></a>
             </li>
         </ul>

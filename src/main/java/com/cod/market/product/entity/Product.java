@@ -22,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Product extends BaseEntity {
 
-    private String name;
+    private String title;
 
     private String description;
 

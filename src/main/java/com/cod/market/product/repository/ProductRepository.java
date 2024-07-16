@@ -16,7 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("""
             select distinct p
             from Product p
-            where p.name like %:kw%
+            where p.title like %:kw%
             or p.description like %:kw%
             """)
     Page<Product> findAllByKeyword(@Param("kw") String kw, Pageable pageable);

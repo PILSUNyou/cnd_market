@@ -11,7 +11,7 @@
     <h1>컨텐츠 생성 페이지</h1>
 
     <form th:action="@{/adm/product/create}" method="POST" enctype="multipart/form-data">
-        제목 : <input type="text" name="name"><br>
+        제목 : <input type="text" name="title"><br>
         내용 : <input type="text" name="description"><br>
         가격 : <input type="number" name="price"><br>
         썸네일 : <input type="file" name="thumbnail" accept="image/png, image/gif, image/jpeg"><br>
@@ -19,7 +19,7 @@
     </form>
 
     <ul th:each="product : ${productList}">
-        <li th:text="${product.name}"></li>
+        <li th:text="${product.title}"></li>
         <li th:text="${product.description}"></li>
         <li th:text="${product.price}"></li>
         <li><img th:src="@{|/gen/${product.thumbnailImg}|}" alt="test이미지"></li>
