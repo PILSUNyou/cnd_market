@@ -51,7 +51,7 @@
                 <form th:action="@{|/cart/add/${product.id}|}" method="POST">
                     <input type="submit" value="장바구니 담기" class="btn btn-outline-dark">
                 </form>
-                <button onclick="pay('카드',jsons.card);" class="btn btn-outline-dark">결제</button>
+                <button onclick="pay();" class="btn btn-outline-dark">결제</button>
             </div>
         </div>
 
@@ -112,121 +112,40 @@
         </div>
     </div>
     <script src="https://js.tosspayments.com/v1"></script>
-    <script>
-        let amount = 50000;
+<script th:inline="javascript">
+    let amount = /*[[ ${product.price}]]*/;
+    let orderName = /*[[ ${product.title} ]]*/
+    let tossPayments = TossPayments("test_ck_eqRGgYO1r5AdpRXYZAQarQnN2Eya"); // 테스트 클라이언트 키
 
-let tossPayments = TossPayments("test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq");
+    let path = "/";
+    let successUrl = window.location.origin + path + "success";
+    let failUrl = window.location.origin + path + "fail";
+    let callbackUrl = window.location.origin + path + "va_callback";
+    let orderId = new Date().getTime();
 
-function pay(method, requestJson) {
-  console.log(requestJson);
-  tossPayments.requestPayment(method, requestJson).catch(function (error) {
-    if (error.code === "USER_CANCEL") {
-      alert("유저가 취소했습니다.");
-    } else {
-      alert(error.message);
+    function pay() {
+        const method = "카드";
+        const requestJson = {
+            amount: amount,
+            orderId: "sample-" + orderId,
+            orderName: orderName,
+            successUrl: successUrl,
+            failUrl: failUrl,
+            cardCompany: null,
+            cardInstallmentPlan: null,
+            maxCardInstallmentPlan: null,
+            useCardPoint: false,
+            customerName: "박토스",
+            customerEmail: null,
+            customerMobilePhone: null,
+            taxFreeAmount: null,
+            useInternationalCardOnly: false,
+            flowMode: "DEFAULT",
+            discountCode: null,
+            appScheme: null,
+        }
+        tossPayments.requestPayment(method, requestJson)
     }
-  });
-}
-
-let path = "/";
-let successUrl = window.location.origin + path + "success";
-let failUrl = window.location.origin + path + "fail";
-let callbackUrl = window.location.origin + path + "va_callback";
-let orderId = new Date().getTime();
-
-let jsons = {
-  card: {
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-    cardCompany: null,
-    cardInstallmentPlan: null,
-    maxCardInstallmentPlan: null,
-    useCardPoint: false,
-    customerName: "박토스",
-    customerEmail: null,
-    customerMobilePhone: null,
-    taxFreeAmount: null,
-    useInternationalCardOnly: false,
-    flowMode: "DEFAULT",
-    discountCode: null,
-    appScheme: null,
-  },
-  vaccount: {
-    //가상계좌 결제창
-
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-    validHours: 72,
-    virtualAccountCallbackUrl: callbackUrl,
-    customerName: "박토스",
-    customerEmail: null,
-    customerMobilePhone: null,
-    taxFreeAmount: null,
-    cashReceipt: {
-      type: "소득공제",
-    },
-    useEscrow: false,
-  },
-  transfer: {
-    //계좌이체 결제창
-
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-    customerName: "박토스",
-    customerEmail: null,
-    customerMobilePhone: null,
-    taxFreeAmount: null,
-    cashReceipt: {
-      type: "소득공제",
-    },
-    useEscrow: false,
-  },
-  phone: {
-    // 휴대폰 결제창
-
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-    mobileCarrier: null,
-  },
-
-  certificate: {
-    //상품권 결제창
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-  },
-
-  bookcert: {
-    //도서문화상품권 결제창
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-  },
-  gamecert: {
-    // 게임문화상품권 결제창
-    amount: amount,
-    orderId: "sample-" + orderId,
-    orderName: "토스 티셔츠 외 2건",
-    successUrl: successUrl,
-    failUrl: failUrl,
-  },
-};
-    </script>
+</script>
 </section>
 </html>
