@@ -1,5 +1,8 @@
 package com.cod.market.oder.controller;
 
+import com.cod.market.product.entity.Product;
+import com.cod.market.product.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,12 +23,17 @@ import java.util.Base64;
 
 @Controller
 @RequestMapping("/order")
+@RequiredArgsConstructor
 public class OrderController {
     @Value("${custom.paymentSecretKey}")
     private String paymentSecretKey;
 
+    private final ProductService productService;
     @GetMapping("/detail")
-    public String detail() {
+    public String detail(Model model, @RequestParam("productId")Long productid) {
+        Product product = productService.getProduct(productid);
+
+        model.addAttribute("product", product);
         return "order/detail";
     }
 
