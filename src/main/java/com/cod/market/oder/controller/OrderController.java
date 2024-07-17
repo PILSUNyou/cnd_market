@@ -24,6 +24,11 @@ public class OrderController {
     @Value("${custom.paymentSecretKey}")
     private String paymentSecretKey;
 
+    @GetMapping("/detail")
+    public String detail() {
+        return "order/detail";
+    }
+
     @GetMapping("/success")
     public String paymentResult(
             Model model,
