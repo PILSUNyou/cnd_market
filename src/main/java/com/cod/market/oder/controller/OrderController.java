@@ -80,7 +80,7 @@ public class OrderController {
             model.addAttribute("message", (String) jsonObject.get("message"));
         }
 
-        return "success";
+        return "order/success";
     }
 
     @GetMapping("/fail")
@@ -93,7 +93,7 @@ public class OrderController {
         model.addAttribute("code", code);
         model.addAttribute("message", message);
 
-        return "fail";
+        return "order/fail";
     }
 
 }
